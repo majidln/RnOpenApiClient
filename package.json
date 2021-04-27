@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "generate:apis": "npx openapi-generator-cli generate -i https://petstore.swagger.io/v2/swagger.json -g typescript-axios -o generated"
   },
   "dependencies": {
     "react": "17.0.1",
