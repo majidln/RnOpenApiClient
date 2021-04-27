@@ -1,40 +1,59 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
-  StatusBar,
-  StyleSheet,
   Text,
-  useColorScheme,
+  TouchableOpacity,
   View,
+  Alert,
+  StyleSheet,
 } from 'react-native';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {petApi} from './api';
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  const [pet, setPet] = useState({});
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const getThePet = async (id: number) => {
+    try {
+      const fetchedPet = await petApi.getPetById(id);
+      setPet(fetchedPet.data);
+    } catch {
+      Alert.alert('An error occurred');
+    }
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Text>Comming Soon</Text>
+    <SafeAreaView>
+      <ScrollView>
+        <View>
+          <TouchableOpacity style={styles.button} onPress={() => getThePet(1)}>
+            <Text style={styles.buttonText}>Get First Pet</Text>
+          </TouchableOpacity>
+          <Text style={styles.pet}>{JSON.stringify(pet)}</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  button: {
+    padding: 20,
+    margin: 20,
+    borderWidth: 4,
+    borderColor: '#000',
+    borderRadius: 10,
+  },
+  buttonText: {
+    fontSize: 24,
+    fontWeight: '900',
+  },
+  pet: {
+    fontSize: 18,
+    padding: 30,
+    marginTop: 40,
+  },
+});
 
 export default App;
