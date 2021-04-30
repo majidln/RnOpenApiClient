@@ -3,10 +3,10 @@ import {
   SafeAreaView,
   ScrollView,
   Text,
-  TouchableOpacity,
   View,
   Alert,
   StyleSheet,
+  Button,
 } from 'react-native';
 
 import {petApi} from './api';
@@ -27,9 +27,7 @@ const App = () => {
     <SafeAreaView>
       <ScrollView>
         <View>
-          <TouchableOpacity style={styles.button} onPress={() => getThePet(1)}>
-            <Text style={styles.buttonText}>Get First Pet</Text>
-          </TouchableOpacity>
+          <Button title="Get First Pet" onPress={() => getThePet(1)} />
           <Text style={styles.pet}>{JSON.stringify(pet)}</Text>
         </View>
       </ScrollView>
