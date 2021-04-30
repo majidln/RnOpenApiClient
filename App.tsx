@@ -18,7 +18,8 @@ const App = () => {
     try {
       const fetchedPet = await petApi.getPetById(id);
       setPet(fetchedPet.data);
-    } catch {
+    } catch (error) {
+      console.warn(error);
       Alert.alert('An error occurred');
     }
   };
