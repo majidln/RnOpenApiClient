@@ -1,1 +1,2 @@
-# RnOpenApiClient
+This is sample application to know how to work with OpenApiGenerator in the React Native.
+You can read more about that in this article: Coming soon ...
